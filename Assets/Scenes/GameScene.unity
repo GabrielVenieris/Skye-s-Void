@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 263770331}
   - component: {fileID: 263770330}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: min:seg
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -348,7 +348,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 'min:seg
+
+'
 --- !u!222 &263770331
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -468,7 +470,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
