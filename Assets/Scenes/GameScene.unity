@@ -1675,7 +1675,7 @@ Rigidbody2D:
   m_ExcludeLayers:
     serializedVersion: 2
     m_Bits: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
@@ -1809,7 +1809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementJoystick: {fileID: 241693527}
-  playerSpeed: 5
+  playerSpeed: 3
 --- !u!1 &1937076846
 GameObject:
   m_ObjectHideFlags: 0
@@ -25963,7 +25963,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 6853641544279066962, guid: dc299caad48514babbeb04a16567e0b0, type: 3}
   playerTransform: {fileID: 1857548778}
-  xPadding: 3.5
+  xPadding: 1
 --- !u!4 &2016388024
 Transform:
   m_ObjectHideFlags: 0
