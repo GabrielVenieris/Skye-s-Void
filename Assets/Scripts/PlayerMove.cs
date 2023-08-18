@@ -5,12 +5,11 @@ public class PlayerMover : MonoBehaviour
     private Rigidbody2D rb;
     private SpriteRenderer sprite;
     private Animator anim;
-    
     public MovementJoystick movementJoystick; // Referência ao joystick
     public float playerSpeed = 3f;
     private float jumpForce = 14f;
+    public PlayerShooter playerShooter; // Referência ao script PlayerShooter
     private bool hasFlipped = false; // Variável para controlar se a sprite já foi virada
-
 
     // Start is called before the first frame update
     void Start()
@@ -39,7 +38,7 @@ public class PlayerMover : MonoBehaviour
         }
     }
 
-   private void UpdateAnimation()
+private void UpdateAnimation()
     {
         // Define a animação de corrida com base na direção horizontal do movimento
         bool isRunning = Mathf.Abs(rb.velocity.x) > 0.1f || Mathf.Abs(rb.velocity.y) > 0.1f;
