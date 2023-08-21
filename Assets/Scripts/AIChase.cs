@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Define como o inimigo vai seguir o player: Velocidade
+Sendo usado?
+*/
+
 public class AIChase : MonoBehaviour
 {
     public GameObject player;

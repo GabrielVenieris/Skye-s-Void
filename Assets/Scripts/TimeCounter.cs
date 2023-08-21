@@ -4,6 +4,10 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
+/*
+Define o cronômetro do jogo em minutos:segundos
+*/
+
 public class TimeCounter : MonoBehaviour
 {
     public Text timeLevel_txt;

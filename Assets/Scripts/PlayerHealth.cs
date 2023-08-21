@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
+/*
+Defini a quantidade de vida o player tem e o que acontece quando chega a 0
+*/
+
 public class PlayerHealth : MonoBehaviour
 {
     public int health;

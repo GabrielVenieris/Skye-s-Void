@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
+/*
+Define a barra de vida: Slider que vai diminuindo conforme o player toma dano
+*/
+
 public class Healthbar : MonoBehaviour
 {
 

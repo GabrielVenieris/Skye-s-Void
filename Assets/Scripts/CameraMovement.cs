@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Define como a câmera se comporta em relação ao jogador. Atualmente: 1 único jogo de câmera
+*/
+
 public class CameraController : MonoBehaviour
 {
     private Transform target;

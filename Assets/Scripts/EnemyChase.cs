@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Define a velocidade, mudança de animação dos inimigos...
+*/
+
 public class EnemyChase : MonoBehaviour
 {
     public Transform player;

@@ -1,5 +1,9 @@
 using UnityEngine;
 
+/*
+Define como o firePointer funciona: QUando a animação do player vira para a esquerda e para a direita, o firepointer precisa acompanhar no update
+*/
+
 public class FirePointRotator : MonoBehaviour
 {
     private bool isFacingRight = true; // Inicialmente assume que a personagem está virada para a direita

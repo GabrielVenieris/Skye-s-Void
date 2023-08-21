@@ -1,5 +1,10 @@
 using UnityEngine;
 
+/*
+Define as animações e como o player vai se comportar ao se movimentar. Se move em relação ao joysitk. 
+Booleana hasFlipped entende quando o player muda de lado para que o FirePointer também vire
+*/
+
 public class PlayerMover : MonoBehaviour
 {
     private Rigidbody2D rb;

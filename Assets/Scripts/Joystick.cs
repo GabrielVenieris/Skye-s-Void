@@ -2,6 +2,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+/*
+Define a movimentação pelo JeyStick. 
+*/
+
 public class MovementJoystick : MonoBehaviour
 {
 
@@ -17,13 +21,6 @@ public class MovementJoystick : MonoBehaviour
     {
         joystickOriginalPos = joystickBG.transform.position;
         joystickRadius = joystickBG.GetComponent<RectTransform>().sizeDelta.y / 17;
-    }
-
-    public void PointerDown()
-    {
-        joystick.transform.position = Input.mousePosition;
-        joystickBG.transform.position = Input.mousePosition;
-        joystickTouchPos = Input.mousePosition;
     }
 
     public void Drag(BaseEventData baseEventData)
@@ -50,6 +47,13 @@ public class MovementJoystick : MonoBehaviour
         joystickVec = Vector2.zero;
         joystick.transform.position = joystickOriginalPos;
         joystickBG.transform.position = joystickOriginalPos;
+    }
+
+    public void PointerDown()
+    {
+        joystick.transform.position = Input.mousePosition;
+        joystickBG.transform.position = Input.mousePosition;
+        joystickTouchPos = Input.mousePosition;
     }
 
 }

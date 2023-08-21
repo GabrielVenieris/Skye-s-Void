@@ -4,6 +4,10 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
+/*
+Define a animação do botão PLAY
+Ao clicar muda o sprite, quando solta volta o sprite default
+*/
 
 public class ClickyButton : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {

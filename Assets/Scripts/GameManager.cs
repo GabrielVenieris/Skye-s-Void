@@ -1,6 +1,10 @@
 using System;
 using UnityEngine;
 
+/*
+Define a organização do jogo: Ainda incompleto(fora de funcionamento)
+*/
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;

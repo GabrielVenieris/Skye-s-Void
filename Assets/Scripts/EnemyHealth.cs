@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Define a vida do inimigo e o que acontece quando ele fica com 0 de vida
+*/
+
 public class EnemyHealth : MonoBehaviour
 {
      public int health;

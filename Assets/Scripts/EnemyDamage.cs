@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Define o dano que o inimigo da no player ao colidir 
+*/
+
 public class EnemyDamage : MonoBehaviour
 {
     public PlayerHealth playerHealth;

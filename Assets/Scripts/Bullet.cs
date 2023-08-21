@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+Define as especificações da bala: Colisão, animação, tempo de vida, dano, espelhamento de animação.
+*/
+
 public class Bullet : MonoBehaviour
 {
     private Rigidbody2D rb;
