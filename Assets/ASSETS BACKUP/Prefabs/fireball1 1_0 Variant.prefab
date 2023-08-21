@@ -61,6 +61,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 8649420766342102886, guid: a28e2a43c8d694925b847c491edd720e, type: 3}
+      propertyPath: m_Interpolate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8649420766342102886, guid: a28e2a43c8d694925b847c491edd720e, type: 3}
       propertyPath: m_SleepingMode
       value: 0
       objectReference: {fileID: 0}
@@ -118,3 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  impactEffect: {fileID: 141382504953449037, guid: 08dd0f79c18314512a13a006a9ae6330, type: 3}

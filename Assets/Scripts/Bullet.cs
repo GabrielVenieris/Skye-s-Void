@@ -9,13 +9,18 @@ public class Bullet : MonoBehaviour
     private Animator anim;
     private bool hasFlipped = false;
     private bool isShootR = false;
-    public int damage = 10; // Adicione a quantidade de dano aqui
+    public int damage = 10;
+    public float lifeTime = 2.0f; // Tempo de vida do tiro em segundos
+    public GameObject impactEffect;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
+
+        // Destrua o tiro após um certo tempo
+        Destroy(gameObject, lifeTime);
     }
 
     public void SetIsShootingRight(bool value)
@@ -45,18 +50,17 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    // Adicione este método para aplicar dano a um objeto
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("Mob v2")) // Verifique a tag correta
+        if (collision.gameObject.CompareTag("Mob v2"))
         {
             EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
             if (enemyHealth != null)
             {
                 enemyHealth.TakeDamage(damage);
             }
-
-            Destroy(gameObject); // Destrua o tiro após colidir com o inimigo
+            Instantiate(impactEffect, transform.position, transform.rotation);
+            Destroy(gameObject);
         }
     }
 }
