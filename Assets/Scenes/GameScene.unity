@@ -2624,7 +2624,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementJoystick: {fileID: 241693527}
-  playerSpeed: 5
+  playerSpeed: 3
   playerShooter: {fileID: 0}
 --- !u!114 &1857548782
 MonoBehaviour:
