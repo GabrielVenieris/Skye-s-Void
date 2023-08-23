@@ -50953,6 +50953,9 @@ MonoBehaviour:
   enemyPrefab: {fileID: 6853641544279066962, guid: dc299caad48514babbeb04a16567e0b0, type: 3}
   playerTransform: {fileID: 1857548778}
   xPadding: 1
+  spawnIntervalDecrement: 0.5
+  initialSpawnInterval: 10
+  Grid: {fileID: 0}
 --- !u!4 &2016388024
 Transform:
   m_ObjectHideFlags: 0
