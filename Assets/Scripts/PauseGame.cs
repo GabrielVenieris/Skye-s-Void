@@ -1,41 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-/*
-Define a funcionalidade do botão de pouse: Muda o TimeScale pra 0, o que trava tudo o que ta acontecendo no game. 
-*/
+using UnityEngine.UI;
 
 public class PausarJogo : MonoBehaviour
 {
-    // variável que nos permite verificar se o jogo está pausado ou não
     public bool jogoPausado;
 
+    // Referências para as imagens de pausa
+    public Image imagemPausa1;
+    public Image imagemPausa2;
 
     void Start()
     {
-        // diz para a Unity rodar o jogo na velocidade normal
-        Time.timeScale = 1f;       
-        // diz para a Unity que o jogo não está pausado                     
-        jogoPausado = false;                            
+        Time.timeScale = 1f;
+        jogoPausado = false;
+
+        // Desativa as imagens de pausa no início
+        imagemPausa1.gameObject.SetActive(false);
+        imagemPausa2.gameObject.SetActive(false);
     }
 
     public void Pausar()
     {
-        // verifica se o jogo não está pausado
-        if(jogoPausado == false)
+        if (jogoPausado == false)
         {
-            // diz para a Unity congelar a velocidade do jogo
-            Time.timeScale = 0f; 
-            // diz para a Unity que o jogo está pausado
-            jogoPausado = true;                         
+            Time.timeScale = 0f;
+            jogoPausado = true;
+
+            // Ativa as imagens de pausa
+            imagemPausa1.gameObject.SetActive(true);
+            imagemPausa2.gameObject.SetActive(true);
         }
-        else    // verifica se o jogo está pausado
+        else
         {
-            // diz para a Unity rodar o jogo na velocidade normal
-            Time.timeScale = 1f;        
-            // diz para a Unity que o jogo não está pausado                
-            jogoPausado = false;                        
+            Time.timeScale = 1f;
+            jogoPausado = false;
+
+            // Desativa as imagens de pausa
+            imagemPausa1.gameObject.SetActive(false);
+            imagemPausa2.gameObject.SetActive(false);
         }
     }
 }
