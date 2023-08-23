@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Tilemaps;
 
 /*
 Define quantidade de inimigos na cena. Cria uma lista de inimigos e quando chega a zero(morrem todos) o jogo reinicia
@@ -12,40 +13,32 @@ public class EnemyGenerator : MonoBehaviour
     public GameObject enemyPrefab; 
     public Transform playerTransform;
     public float xPadding;
-    private List<GameObject> enemies = new List<GameObject>();
-    
-    // Intervalo inicial entre spawns
-    public float initialSpawnInterval = 10.0f; 
-   
     // Decréscimo do intervalo a cada spawn
-    public float spawnIntervalDecrement = 0.5f; 
+    public float spawnIntervalDecrement = 0.5f;
+     // Intervalo inicial entre spawns
+    public float initialSpawnInterval = 10.0f;
+    // Referência ao mapa
+    public GameObject Tilemap; 
+
+
+    private List<GameObject> enemies = new List<GameObject>();
     private float currentSpawnInterval;
-
-    // Temporizador para controlar o próximo spawn
+   // Temporizador para controlar o próximo spawn
     private float timer = 0.0f; 
-
     // Contador de inimigos spawnado
-    private int enemiesSpawned = 0; 
+    private int enemiesSpawned = 0;
+    // Renderer component of the map bounds object
+    private Tilemap tilemap;
+    private BoundsInt tilemapBounds;
 
-
-
-
+    
 
     void Start()
     {
         currentSpawnInterval = initialSpawnInterval;
+        tilemap = Tilemap.GetComponent<Tilemap>();
+        tilemapBounds = tilemap.cellBounds;
         SpawnEnemies(3);
-
-        // float xDist = 0;
-        // for(int i = 0; i <= 3; i++)
-        // {
-        //     GameObject enemy = Instantiate(enemyPrefab);
-        //     enemy.GetComponent<EnemyChase>().player = playerTransform;
-        //     enemy.transform.position = new Vector3(enemy.transform.position.x + xDist, enemy.transform.position.y, enemy.transform.position.z);
-        //     xDist += xPadding;
-
-        //     enemies.Add(enemy); // Add the instantiated enemy to the list
-        // }
     }
 
     void Update()
@@ -78,18 +71,48 @@ public class EnemyGenerator : MonoBehaviour
 
     private void SpawnEnemies(int count)
     {
-        float xDist = 0;
+
         for (int i = 0; i < count; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab);
             enemy.GetComponent<EnemyChase>().player = playerTransform;
-            enemy.transform.position = new Vector3(enemy.transform.position.x + xDist, enemy.transform.position.y, enemy.transform.position.z);
-            xDist += xPadding;
 
-            enemies.Add(enemy);//Popula a lista de quantidade de inimigos
+           // Get a random cell position within the tilemap bounds
+            Vector3Int randomCell = new Vector3Int(
+                Random.Range(tilemapBounds.xMin, tilemapBounds.xMax),
+                Random.Range(tilemapBounds.yMin, tilemapBounds.yMax),
+                0);
+
+            // Convert cell position to world position
+            Vector3 randomPosition = tilemap.GetCellCenterWorld(randomCell);
+
+            // Check if the random position is valid (inside the tilemap)
+            if (tilemapBounds.Contains(randomCell) && tilemap.GetTile(randomCell) != null)
+            {
+                enemy.transform.position = randomPosition;
+
+                enemies.Add(enemy);
+            }
+            else
+            {
+                // Try again if the position is invalid
+                i--;
+            }
         }
     }
 
+    //     float xDist = 0;
+    //     for (int i = 0; i < count; i++)
+    //     {
+    //         GameObject enemy = Instantiate(enemyPrefab);
+    //         enemy.GetComponent<EnemyChase>().player = playerTransform;
+    //         enemy.transform.position = new Vector3(enemy.transform.position.x + xDist, enemy.transform.position.y, enemy.transform.position.z);
+    //         xDist += xPadding;
+
+    //         enemies.Add(enemy);
+            
+    //     }
+    // }
 
 
 
