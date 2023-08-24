@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security;
+using JetBrains.Annotations;
 using UnityEngine;
 
 /*
@@ -16,6 +18,9 @@ public class Bullet : MonoBehaviour
     public int damage = 10;
     public float lifeTime = 2.0f; // Tempo de vida do tiro em segundos
     public GameObject impactEffect;
+
+    public bool Seeking;
+    public Vector3 seekingPos;
 
     private void Awake()
     {
@@ -67,4 +72,6 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+
 }
