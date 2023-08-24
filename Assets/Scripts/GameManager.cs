@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 /*
+Singleton
 Define a organização do jogo: Ainda incompleto(fora de funcionamento)
 BackToMenu() = Volta pra tela de inicio
 */
