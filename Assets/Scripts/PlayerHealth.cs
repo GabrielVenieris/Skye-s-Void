@@ -13,6 +13,7 @@ public class PlayerHealth : MonoBehaviour
     public int health;
     public int maxHealth = 10;
     public Healthbar healthBar;
+    public GameManager GameManager;
 
 
     // Start is called before the first frame update
@@ -28,7 +29,7 @@ public class PlayerHealth : MonoBehaviour
         healthBar.SetHealth(health);
         if(health <= 0)
         {
-            SceneManager.LoadScene(0);
+            GameManager.BackToMenu();
             TimeCounter.sceneStarted = false;
         }
     }

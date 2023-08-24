@@ -1,45 +1,49 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
+/*
+Define a funcionalidade do botão de pouse: Muda o TimeScale pra 0, o que trava tudo o que ta acontecendo no game. 
+*/
 
 public class PausarJogo : MonoBehaviour
 {
     public bool jogoPausado;
-
-    // Referências para as imagens de pausa
-    public Image imagemPausa1;
-    public Image imagemPausa2;
+    public GameObject PauseUI;
+    public GameObject Joystick;
+    public GameManager GameManager;
 
     void Start()
     {
         Time.timeScale = 1f;
         jogoPausado = false;
-
-        // Desativa as imagens de pausa no início
-        imagemPausa1.gameObject.SetActive(false);
-        imagemPausa2.gameObject.SetActive(false);
+        AtualizarVisibilidadePauseUI();
+        AtualizarVisibilidadeJoystick();
     }
 
-    public void Pausar()
+    public void PausarOuContinuar()
     {
-        if (jogoPausado == false)
-        {
-            Time.timeScale = 0f;
-            jogoPausado = true;
-
-            // Ativa as imagens de pausa
-            imagemPausa1.gameObject.SetActive(true);
-            imagemPausa2.gameObject.SetActive(true);
-        }
-        else
-        {
-            Time.timeScale = 1f;
-            jogoPausado = false;
-
-            // Desativa as imagens de pausa
-            imagemPausa1.gameObject.SetActive(false);
-            imagemPausa2.gameObject.SetActive(false);
-        }
+        jogoPausado = !jogoPausado;
+        Time.timeScale = jogoPausado ? 0f : 1f;
+        AtualizarVisibilidadePauseUI();
+        AtualizarVisibilidadeJoystick();
     }
+
+    public void AtualizarVisibilidadePauseUI()
+    {
+        PauseUI.SetActive(jogoPausado);
+    }
+
+    public void AtualizarVisibilidadeJoystick()
+    {
+        Joystick.SetActive(!jogoPausado); // Define a visibilidade do Joystick com base no estado do jogo pausado
+    }
+
+
+    public void BackToMenu()
+    {
+        GameManager.BackToMenu();
+    }
+
+
 }

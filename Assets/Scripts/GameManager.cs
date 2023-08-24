@@ -1,8 +1,10 @@
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /*
 Define a organização do jogo: Ainda incompleto(fora de funcionamento)
+BackToMenu() = Volta pra tela de inicio
 */
 
 public class GameManager : MonoBehaviour
@@ -10,6 +12,13 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
     public GameState State;
     public static event Action<GameState> OnGameStateChanged;
+
+
+    void Awake() 
+    {
+        Instance = this;
+    }
+
 
     public void UpdateGameStates(GameState newState)
     {
@@ -35,6 +44,16 @@ public class GameManager : MonoBehaviour
 
         OnGameStateChanged?.Invoke(newState);
     }
+
+
+    public void BackToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+
+
+
 
 }
 
