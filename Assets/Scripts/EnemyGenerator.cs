@@ -20,7 +20,7 @@ public class EnemyGenerator : MonoBehaviour
     // Referência ao mapa
     public GameObject Tilemap; 
 
-
+    
     private List<GameObject> enemies = new List<GameObject>();
     private float currentSpawnInterval;
    // Temporizador para controlar o próximo spawn
@@ -43,7 +43,6 @@ public class EnemyGenerator : MonoBehaviour
 
     void Update()
     {
-
         timer += Time.deltaTime;
 
         if (timer >= currentSpawnInterval)
@@ -53,7 +52,7 @@ public class EnemyGenerator : MonoBehaviour
 
             // Ajuste o temporizador e a taxa de spawn
             timer = 0.0f;
-            currentSpawnInterval -= spawnIntervalDecrement;
+            // currentSpawnInterval -= spawnIntervalDecrement;
             // Defina um limite mínimo
             currentSpawnInterval = Mathf.Max(currentSpawnInterval, 1.0f); 
 
@@ -101,23 +100,14 @@ public class EnemyGenerator : MonoBehaviour
         }
     }
 
-    //     float xDist = 0;
-    //     for (int i = 0; i < count; i++)
-    //     {
-    //         GameObject enemy = Instantiate(enemyPrefab);
-    //         enemy.GetComponent<EnemyChase>().player = playerTransform;
-    //         enemy.transform.position = new Vector3(enemy.transform.position.x + xDist, enemy.transform.position.y, enemy.transform.position.z);
-    //         xDist += xPadding;
+//     public void KillCount()
+// {
+//     Debug.Log("KillCount function called");
+//     int enemyCount = enemies.Count;
+//     print("Kills: " + enemyCount);
+// }
 
-    //         enemies.Add(enemy);
-            
-    //     }
-    // }
-
-
-
-
-
+    
     //IMPORTANTE PARA SABER SE JÁ PODE IR PRA PRÓXIMA ILHA
     // bool AreAllEnemiesDestroyed()
     // {
@@ -131,3 +121,4 @@ public class EnemyGenerator : MonoBehaviour
     //     return true; // All enemies are destroyed
     // }
 }
+
