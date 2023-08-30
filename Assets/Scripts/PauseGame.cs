@@ -8,34 +8,42 @@ Define a funcionalidade do botão de pouse: Muda o TimeScale pra 0, o que trava 
 
 public class PausarJogo : MonoBehaviour
 {
-    // variável que nos permite verificar se o jogo está pausado ou não
     public bool jogoPausado;
-
+    public GameObject PauseUI;
+    public GameObject Joystick;
+    public GameManager GameManager;
 
     void Start()
     {
-        // diz para a Unity rodar o jogo na velocidade normal
-        Time.timeScale = 1f;       
-        // diz para a Unity que o jogo não está pausado                     
-        jogoPausado = false;                            
+        Time.timeScale = 1f;
+        jogoPausado = false;
+        AtualizarVisibilidadePauseUI();
+        AtualizarVisibilidadeJoystick();
     }
 
-    public void Pausar()
+    public void PausarOuContinuar()
     {
-        // verifica se o jogo não está pausado
-        if(jogoPausado == false)
-        {
-            // diz para a Unity congelar a velocidade do jogo
-            Time.timeScale = 0f; 
-            // diz para a Unity que o jogo está pausado
-            jogoPausado = true;                         
-        }
-        else    // verifica se o jogo está pausado
-        {
-            // diz para a Unity rodar o jogo na velocidade normal
-            Time.timeScale = 1f;        
-            // diz para a Unity que o jogo não está pausado                
-            jogoPausado = false;                        
-        }
+        jogoPausado = !jogoPausado;
+        Time.timeScale = jogoPausado ? 0f : 1f;
+        AtualizarVisibilidadePauseUI();
+        AtualizarVisibilidadeJoystick();
     }
+
+    public void AtualizarVisibilidadePauseUI()
+    {
+        PauseUI.SetActive(jogoPausado);
+    }
+
+    public void AtualizarVisibilidadeJoystick()
+    {
+        Joystick.SetActive(!jogoPausado); // Define a visibilidade do Joystick com base no estado do jogo pausado
+    }
+
+
+    public void BackToMenu()
+    {
+        GameManager.BackToMenu();
+    }
+
+
 }

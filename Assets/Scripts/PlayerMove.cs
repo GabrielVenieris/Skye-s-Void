@@ -5,7 +5,7 @@ Define as animações e como o player vai se comportar ao se movimentar. Se move
 Booleana hasFlipped entende quando o player muda de lado para que o FirePointer também vire
 */
 
-public class PlayerMover : MonoBehaviour
+public class PlayerMove : MonoBehaviour
 {
     private Rigidbody2D rb;
     private SpriteRenderer sprite;

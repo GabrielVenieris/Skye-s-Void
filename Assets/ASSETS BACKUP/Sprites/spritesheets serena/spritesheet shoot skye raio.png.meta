@@ -286,10 +286,10 @@ TextureImporter:
       name: spritesheet shoot skye raio_7
       rect:
         serializedVersion: 2
-        x: 1893
-        y: 1920
-        width: 93
-        height: 103
+        x: 1884
+        y: 1922
+        width: 97
+        height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -307,9 +307,9 @@ TextureImporter:
       name: spritesheet shoot skye raio_8
       rect:
         serializedVersion: 2
-        x: 98
-        y: 1663
-        width: 98
+        x: 88
+        y: 1666
+        width: 108
         height: 100
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -328,9 +328,9 @@ TextureImporter:
       name: spritesheet shoot skye raio_9
       rect:
         serializedVersion: 2
-        x: 350
+        x: 334
         y: 1661
-        width: 114
+        width: 130
         height: 101
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -349,9 +349,9 @@ TextureImporter:
       name: spritesheet shoot skye raio_10
       rect:
         serializedVersion: 2
-        x: 602
+        x: 575
         y: 1658
-        width: 130
+        width: 157
         height: 108
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -370,9 +370,9 @@ TextureImporter:
       name: spritesheet shoot skye raio_11
       rect:
         serializedVersion: 2
-        x: 854
+        x: 834
         y: 1660
-        width: 138
+        width: 158
         height: 110
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -391,9 +391,9 @@ TextureImporter:
       name: spritesheet shoot skye raio_12
       rect:
         serializedVersion: 2
-        x: 1113
+        x: 1100
         y: 1664
-        width: 124
+        width: 137
         height: 106
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -412,9 +412,9 @@ TextureImporter:
       name: spritesheet shoot skye raio_13
       rect:
         serializedVersion: 2
-        x: 1372
+        x: 1370
         y: 1668
-        width: 104
+        width: 106
         height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -454,9 +454,9 @@ TextureImporter:
       name: spritesheet shoot skye raio_15
       rect:
         serializedVersion: 2
-        x: 1892
+        x: 1890
         y: 1666
-        width: 94
+        width: 96
         height: 107
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -475,9 +475,9 @@ TextureImporter:
       name: spritesheet shoot skye raio_16
       rect:
         serializedVersion: 2
-        x: 97
+        x: 86
         y: 1409
-        width: 104
+        width: 115
         height: 111
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

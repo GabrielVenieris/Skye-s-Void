@@ -15,6 +15,8 @@ public class MovementJoystick : MonoBehaviour
     private Vector2 joystickTouchPos;
     private Vector2 joystickOriginalPos;
     private float joystickRadius;
+    public PausarJogo pausarJogo;
+
 
     // Start is called before the first frame update
     void Start()
@@ -25,6 +27,7 @@ public class MovementJoystick : MonoBehaviour
 
     public void Drag(BaseEventData baseEventData)
     {
+        
         PointerEventData pointerEventData = baseEventData as PointerEventData;
         Vector2 dragPos = pointerEventData.position;
         joystickVec = (dragPos - joystickTouchPos).normalized;
