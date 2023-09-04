@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions.Comparers;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
@@ -70,7 +71,6 @@ public class EnemyGenerator : MonoBehaviour
 
     private void SpawnEnemies(int count)
     {
-
         for (int i = 0; i < count; i++)
         {
             GameObject enemy = Instantiate(enemyPrefab);
