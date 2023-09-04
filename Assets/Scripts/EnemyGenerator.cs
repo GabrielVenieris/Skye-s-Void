@@ -22,7 +22,7 @@ public class EnemyGenerator : MonoBehaviour
     public GameObject Tilemap; 
 
     
-    private List<GameObject> enemies = new List<GameObject>();
+    
     private float currentSpawnInterval;
    // Temporizador para controlar o próximo spawn
     private float timer = 0.0f; 
@@ -31,6 +31,12 @@ public class EnemyGenerator : MonoBehaviour
     // Renderer component of the map bounds object
     private Tilemap tilemap;
     private BoundsInt tilemapBounds;
+    // Referência ao Level Manager
+    private LevelManager levelManager; 
+    // Lista de inimigos mortos
+    private List<EnemyHealth> enemiesList = new List<EnemyHealth>(); 
+
+
 
     
 
@@ -39,11 +45,25 @@ public class EnemyGenerator : MonoBehaviour
         currentSpawnInterval = initialSpawnInterval;
         tilemap = Tilemap.GetComponent<Tilemap>();
         tilemapBounds = tilemap.cellBounds;
-        SpawnEnemies(3);
+        // SpawnEnemies(3);
+        // Obtenha a referência para o Level Manager
+        levelManager = FindObjectOfType<LevelManager>();
+
+        // Verifique se o Level Manager foi encontrado
+        if (levelManager == null)
+        {
+            Debug.LogError("Level Manager não encontrado.");
+        }
+
+        int enemiesToSpawn = levelManager.GetEnemiesForCurrentLevel(); // Obtenha a quantidade de inimigos para o nível atual
+        SpawnEnemies(enemiesToSpawn);
+
     }
 
     void Update()
     {
+        KillCount();
+
         timer += Time.deltaTime;
 
         if (timer >= currentSpawnInterval)
@@ -69,43 +89,46 @@ public class EnemyGenerator : MonoBehaviour
         // }
     }
 
-    private void SpawnEnemies(int count)
+
+    private void SpawnEnemies(int enemiesToSpawn)
+{
+    for (int i = 0; i < enemiesToSpawn; i++)
     {
-        for (int i = 0; i < count; i++)
+        GameObject enemy = Instantiate(enemyPrefab);
+        enemy.GetComponent<EnemyChase>().player = playerTransform;
+        // Get a random cell position within the tilemap bounds
+        Vector3Int randomCell = new Vector3Int(
+            Random.Range(tilemapBounds.xMin, tilemapBounds.xMax),
+            Random.Range(tilemapBounds.yMin, tilemapBounds.yMax),
+            0);
+        // Convert cell position to world position
+        Vector3 randomPosition = tilemap.GetCellCenterWorld(randomCell);
+        // Check if the random position is valid (inside the tilemap)
+        if (tilemapBounds.Contains(randomCell) && tilemap.GetTile(randomCell) != null)
         {
-            GameObject enemy = Instantiate(enemyPrefab);
-            enemy.GetComponent<EnemyChase>().player = playerTransform;
-
-           // Get a random cell position within the tilemap bounds
-            Vector3Int randomCell = new Vector3Int(
-                Random.Range(tilemapBounds.xMin, tilemapBounds.xMax),
-                Random.Range(tilemapBounds.yMin, tilemapBounds.yMax),
-                0);
-
-            // Convert cell position to world position
-            Vector3 randomPosition = tilemap.GetCellCenterWorld(randomCell);
-
-            // Check if the random position is valid (inside the tilemap)
-            if (tilemapBounds.Contains(randomCell) && tilemap.GetTile(randomCell) != null)
-            {
-                enemy.transform.position = randomPosition;
-
-                enemies.Add(enemy);
-            }
-            else
-            {
-                // Try again if the position is invalid
-                i--;
-            }
+            enemy.transform.position = randomPosition;
+            
+        }
+        else
+        {
+            // Try again if the position is invalid
+            i--;
         }
     }
+}
 
-//     public void KillCount()
-// {
-//     Debug.Log("KillCount function called");
-//     int enemyCount = enemies.Count;
-//     print("Kills: " + enemyCount);
-// }
+public void KillCount()
+{
+    Debug.Log("KillCount function called");
+    int enemyKillCount = enemiesList.Count;
+    print("Kills: " + enemyKillCount);
+}
+
+
+   public void AddDeadEnemy(EnemyHealth enemy)
+    {
+        enemiesList.Add(enemy); // Adicione o inimigo morto à lista
+    }
 
     
     //IMPORTANTE PARA SABER SE JÁ PODE IR PRA PRÓXIMA ILHA

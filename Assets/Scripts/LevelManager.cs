@@ -25,7 +25,7 @@ public class LevelManager : MonoBehaviour
         switch (currentLevel)
         {
             case GameLevel.Level1:
-                return 20; // Define a quantidade de inimigos para o Level 1
+                return 5; // Define a quantidade de inimigos para o Level 1
             case GameLevel.Level2:
                 return 35; // Define a quantidade de inimigos para o Level 2
             case GameLevel.Level3:
