@@ -20,6 +20,7 @@ public class EnemyGenerator : MonoBehaviour
     public float initialSpawnInterval = 10.0f;
     // Referência ao mapa
     public GameObject Tilemap; 
+    public List<EnemyHealth> enemiesList = new List<EnemyHealth>();
 
     
     
@@ -34,7 +35,7 @@ public class EnemyGenerator : MonoBehaviour
     // Referência ao Level Manager
     private LevelManager levelManager; 
     // Lista de inimigos mortos
-    private List<EnemyHealth> enemiesList = new List<EnemyHealth>(); 
+     
 
 
 
@@ -66,19 +67,19 @@ public class EnemyGenerator : MonoBehaviour
 
         timer += Time.deltaTime;
 
-        if (timer >= currentSpawnInterval)
-        {
-            int enemiesToSpawn = Mathf.FloorToInt(enemiesSpawned * 0.5f) + 1;
-            SpawnEnemies(enemiesToSpawn);
+        // if (timer >= currentSpawnInterval)
+        // {
+        //     int enemiesToSpawn = Mathf.FloorToInt(enemiesSpawned * 0.5f) + 1;
+        //     SpawnEnemies(enemiesToSpawn);
 
-            // Ajuste o temporizador e a taxa de spawn
-            timer = 0.0f;
-            // currentSpawnInterval -= spawnIntervalDecrement;
-            // Defina um limite mínimo
-            currentSpawnInterval = Mathf.Max(currentSpawnInterval, 1.0f); 
+        //     // Ajuste o temporizador e a taxa de spawn
+        //     timer = 0.0f;
+        //     // currentSpawnInterval -= spawnIntervalDecrement;
+        //     // Defina um limite mínimo
+        //     currentSpawnInterval = Mathf.Max(currentSpawnInterval, 1.0f); 
 
-            enemiesSpawned += enemiesToSpawn;
-        }
+        //     enemiesSpawned += enemiesToSpawn;
+        // }
 
 
         //IMPORTANTE PARA SABER SE JÁ PODE IR PRA PRÓXIMA ILHA
@@ -91,7 +92,15 @@ public class EnemyGenerator : MonoBehaviour
 
 
     private void SpawnEnemies(int enemiesToSpawn)
-{
+    {
+
+        // Obtenha o número máximo de inimigos para o level atual
+    int maxEnemiesForCurrentLevel = levelManager.GetEnemiesForCurrentLevel();
+
+    // Limite o número de inimigos a nascer ao valor máximo
+    enemiesToSpawn = Mathf.Min(enemiesToSpawn, maxEnemiesForCurrentLevel);
+
+
     for (int i = 0; i < enemiesToSpawn; i++)
     {
         GameObject enemy = Instantiate(enemyPrefab);
@@ -130,7 +139,14 @@ public void KillCount()
         enemiesList.Add(enemy); // Adicione o inimigo morto à lista
     }
 
-    
+    //Pegar a lista em outras classes
+    public List<EnemyHealth> GetEnemiesKilledList()
+    {
+    return enemiesList;
+    }
+
+
+
     //IMPORTANTE PARA SABER SE JÁ PODE IR PRA PRÓXIMA ILHA
     // bool AreAllEnemiesDestroyed()
     // {
