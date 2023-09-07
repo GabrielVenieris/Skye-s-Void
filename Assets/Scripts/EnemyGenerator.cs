@@ -5,149 +5,115 @@ using UnityEngine.Assertions.Comparers;
 using UnityEngine.SceneManagement;
 using UnityEngine.Tilemaps;
 
-/*
-Define quantidade de inimigos na cena. Cria uma lista de inimigos e quando chega a zero(morrem todos) o jogo reinicia
-*/
-
 public class EnemyGenerator : MonoBehaviour
 {
-    public GameObject enemyPrefab; 
+    public GameObject enemyPrefab;
     public Transform playerTransform;
-    public float xPadding;
-    // Decréscimo do intervalo a cada spawn
-    public float spawnIntervalDecrement = 0.5f;
-     // Intervalo inicial entre spawns
-    public float initialSpawnInterval = 10.0f;
-    // Referência ao mapa
-    public GameObject Tilemap; 
-    public List<EnemyHealth> enemiesList = new List<EnemyHealth>();
+    public GameObject tilemapObject;
+    public List<EnemyHealth> enemiesKilledList = new List<EnemyHealth>();
 
-    
-    
+
+    [SerializeField] private float spawnRate = 1f;
     private float currentSpawnInterval;
-   // Temporizador para controlar o próximo spawn
-    private float timer = 0.0f; 
-    // Contador de inimigos spawnado
-    private int enemiesSpawned = 0;
-    // Renderer component of the map bounds object
+    private float timer = 0.0f;
     private Tilemap tilemap;
+    // uma private void para o Mapa2, para que a segunda cena consiga acessar
     private BoundsInt tilemapBounds;
-    // Referência ao Level Manager
-    private LevelManager levelManager; 
-    // Lista de inimigos mortos
-     
+    private LevelManager levelManager;
+    private int enemiesToSpawn;
 
-
-
-    
 
     void Start()
     {
-        currentSpawnInterval = initialSpawnInterval;
-        tilemap = Tilemap.GetComponent<Tilemap>();
-        tilemapBounds = tilemap.cellBounds;
-        // SpawnEnemies(3);
-        // Obtenha a referência para o Level Manager
-        levelManager = FindObjectOfType<LevelManager>();
-
-        // Verifique se o Level Manager foi encontrado
-        if (levelManager == null)
-        {
-            Debug.LogError("Level Manager não encontrado.");
-        }
-
-        int enemiesToSpawn = levelManager.GetEnemiesForCurrentLevel(); // Obtenha a quantidade de inimigos para o nível atual
-        SpawnEnemies(enemiesToSpawn);
-
+        InitializeReferences();
+        enemiesToSpawn = levelManager.enemiesPerLevel;
+        StartCoroutine(SpawnEnemies(enemiesToSpawn));
     }
 
     void Update()
     {
         KillCount();
-
         timer += Time.deltaTime;
+    }
 
-        // if (timer >= currentSpawnInterval)
-        // {
-        //     int enemiesToSpawn = Mathf.FloorToInt(enemiesSpawned * 0.5f) + 1;
-        //     SpawnEnemies(enemiesToSpawn);
+    private void InitializeReferences()
+    {
+        tilemap = tilemapObject.GetComponent<Tilemap>();
+        tilemapBounds = tilemap.cellBounds;
+        levelManager = FindObjectOfType<LevelManager>();
+        if (levelManager == null)
+        {
+            Debug.LogError("Level Manager não encontrado.");
+        }
+    }
 
-        //     // Ajuste o temporizador e a taxa de spawn
-        //     timer = 0.0f;
-        //     // currentSpawnInterval -= spawnIntervalDecrement;
-        //     // Defina um limite mínimo
-        //     currentSpawnInterval = Mathf.Max(currentSpawnInterval, 1.0f); 
+    private IEnumerator SpawnEnemies(int x)
+    {
+        WaitForSeconds wait = new WaitForSeconds(spawnRate);
+        for (int i = 0; i < x; i++)
+        {
+            yield return wait;
+            GameObject enemy = Instantiate(enemyPrefab);
+            enemy.GetComponent<EnemyChase>().player = playerTransform;
 
-        //     enemiesSpawned += enemiesToSpawn;
-        // }
+            Vector3Int randomCell = new Vector3Int(
+                Random.Range(tilemapBounds.xMin, tilemapBounds.xMax),
+                Random.Range(tilemapBounds.yMin, tilemapBounds.yMax),
+                0);
+
+            Vector3 randomPosition = tilemap.GetCellCenterWorld(randomCell);
+
+            if (tilemapBounds.Contains(randomCell) && tilemap.GetTile(randomCell) != null)
+            {
+                enemy.transform.position = randomPosition;
+            }
+            else
+            {
+                i--;
+            }
+        }
+    }
+
+    public void KillCount()
+    {
+        Debug.Log("KillCount function called");
+        int enemyKillCount = enemiesKilledList.Count;
+        print("Kills: " + enemyKillCount);
+    }
+
+    public void AddDeadEnemy(EnemyHealth enemy)
+    {
+        enemiesKilledList.Add(enemy);
+    }
+
+    public List<EnemyHealth> GetEnemiesKilledList()
+    {
+        return enemiesKilledList;
+    }
+}
 
 
-        //IMPORTANTE PARA SABER SE JÁ PODE IR PRA PRÓXIMA ILHA
+
+
+
+
+
+
+
+
+/*
+Define quantidade de inimigos na cena. Cria uma lista de inimigos e quando chega a zero(morrem todos) o jogo reinicia
+*/
+
+
+//IMPORTANTE PARA SABER SE JÁ PODE IR PRA PRÓXIMA ILHA
         // // Check if all enemies are destroyed
         // if (AreAllEnemiesDestroyed())
         // {
         //     SceneManager.LoadScene(0); // Load scene when all enemies are destroyed
         // }
-    }
 
-
-    private void SpawnEnemies(int enemiesToSpawn)
-    {
-
-        // Obtenha o número máximo de inimigos para o level atual
-    int maxEnemiesForCurrentLevel = levelManager.GetEnemiesForCurrentLevel();
-
-    // Limite o número de inimigos a nascer ao valor máximo
-    enemiesToSpawn = Mathf.Min(enemiesToSpawn, maxEnemiesForCurrentLevel);
-
-
-    for (int i = 0; i < enemiesToSpawn; i++)
-    {
-        GameObject enemy = Instantiate(enemyPrefab);
-        enemy.GetComponent<EnemyChase>().player = playerTransform;
-        // Get a random cell position within the tilemap bounds
-        Vector3Int randomCell = new Vector3Int(
-            Random.Range(tilemapBounds.xMin, tilemapBounds.xMax),
-            Random.Range(tilemapBounds.yMin, tilemapBounds.yMax),
-            0);
-        // Convert cell position to world position
-        Vector3 randomPosition = tilemap.GetCellCenterWorld(randomCell);
-        // Check if the random position is valid (inside the tilemap)
-        if (tilemapBounds.Contains(randomCell) && tilemap.GetTile(randomCell) != null)
-        {
-            enemy.transform.position = randomPosition;
-            
-        }
-        else
-        {
-            // Try again if the position is invalid
-            i--;
-        }
-    }
-}
-
-public void KillCount()
-{
-    Debug.Log("KillCount function called");
-    int enemyKillCount = enemiesList.Count;
-    print("Kills: " + enemyKillCount);
-}
-
-
-   public void AddDeadEnemy(EnemyHealth enemy)
-    {
-        enemiesList.Add(enemy); // Adicione o inimigo morto à lista
-    }
-
-    //Pegar a lista em outras classes
-    public List<EnemyHealth> GetEnemiesKilledList()
-    {
-    return enemiesList;
-    }
-
-
-
-    //IMPORTANTE PARA SABER SE JÁ PODE IR PRA PRÓXIMA ILHA
+        //IMPORTANTE PARA SABER SE JÁ PODE IR PRA PRÓXIMA ILHA
     // bool AreAllEnemiesDestroyed()
     // {
     //     foreach (GameObject enemy in enemies)
@@ -159,5 +125,3 @@ public void KillCount()
     //     }
     //     return true; // All enemies are destroyed
     // }
-}
-

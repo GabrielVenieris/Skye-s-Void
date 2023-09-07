@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 
 /*
@@ -9,11 +10,12 @@ Define a vida do inimigo e o que acontece quando ele fica com 0 de vida
 public class EnemyHealth : MonoBehaviour
 {
     public int health;
-    public int maxHealth = 10;
+    public int maxHealth = 1;
     
 
     
     private EnemyGenerator enemyGenerator; // Referência ao EnemyGenerator
+    private LevelManager levelManager;
 
 
 
@@ -21,6 +23,8 @@ public class EnemyHealth : MonoBehaviour
     {
         health = maxHealth; // Define a vida inicial
         enemyGenerator = FindObjectOfType<EnemyGenerator>();
+        levelManager = FindAnyObjectByType<LevelManager>();
+        maxHealth = levelManager.enemyHealth;
     }
 
     public void TakeDamage(int damageAmount)
@@ -49,6 +53,7 @@ public class EnemyHealth : MonoBehaviour
 //     int enemyKillCount = enemiesList.Count;
 //     print("Kills: " + enemyKillCount);
 // }
+
 
 
 }
