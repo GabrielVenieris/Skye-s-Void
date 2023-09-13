@@ -5,7 +5,7 @@ using JetBrains.Annotations;
 using UnityEngine;
 
 /*
-Define as especificações da bala: Colisão, animação, tempo de vida, dano, espelhamento de animação.
+Define as especificações da bala: Colisão, animação, tempo de vida, dano, espelhamento de animação. Com inimigos normais e com bosses.
 */
 
 public class Bullet : MonoBehaviour
@@ -71,6 +71,24 @@ public class Bullet : MonoBehaviour
             Instantiate(impactEffect, transform.position, transform.rotation);
             Destroy(gameObject);
         }
+
+        if (collision.gameObject.CompareTag("VoidBoss"))
+        {
+            EnemyHealth enemyHealth = collision.gameObject.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.TakeDamage(damage);
+            }
+            if(enemyHealth.health == 0 )
+            {
+                GameManager.Instance.LoadNextLevel();
+            }
+            Instantiate(impactEffect, transform.position, transform.rotation);
+            Destroy(gameObject);
+        }
+
+
+
     }
 
 

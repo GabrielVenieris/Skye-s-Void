@@ -9,14 +9,14 @@ EditorBuildSettings:
     path: Assets/Scenes/StartMenuScene.unity
     guid: a6377d0ef3cf3481b848e46a6ad33dec
   - enabled: 1
-    path: Assets/Scenes/GameScene.unity
-    guid: 3fc8acdd13e6c734bafef6554d6fdbcd
-  - enabled: 1
-    path: Assets/Scenes/teste2.unity
-    guid: a952f152355c8431392931ad4fdbbdf7
-  - enabled: 1
     path: Assets/Scenes/Void.unity
     guid: fd8dd27d2f2174ff0b3980a8d1cf14f4
+  - enabled: 1
+    path: Assets/Scenes/Mapa 1.unity
+    guid: 2a5cc9601ded643b080efc386ef5907d
+  - enabled: 1
+    path: Assets/Scenes/Mapa 2.unity
+    guid: a952f152355c8431392931ad4fdbbdf7
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: b17c4c64e7cbc4981b8fc547618c5096, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 79b52c90898ff45969c29cf4957c1b6f, type: 2}
