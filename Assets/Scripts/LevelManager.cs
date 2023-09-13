@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public int enemiesPerLevel = 30;
     public int enemyHealth = 1;
     public int enemyDamage = 1;
+    public int bossHealth = 100;
 
     public bool lastEnemyIsABoss = false;
 

@@ -11,6 +11,7 @@ public class EnemyHealth : MonoBehaviour
 {
     public int health;
     public int maxHealth = 1;
+    public bool isBoss = false; 
     
 
     
@@ -24,7 +25,16 @@ public class EnemyHealth : MonoBehaviour
         health = maxHealth; // Define a vida inicial
         enemyGenerator = FindObjectOfType<EnemyGenerator>();
         levelManager = FindAnyObjectByType<LevelManager>();
-        maxHealth = levelManager.enemyHealth;
+        
+        // Defina a vida inicial com base em se este é um boss ou não
+        if (isBoss)
+        {
+            health = levelManager.bossHealth; // Use a vida específica para chefes
+        }
+        else
+        {
+            maxHealth = levelManager.enemyHealth; // Use a vida padrão
+        }
     }
 
     public void TakeDamage(int damageAmount)
@@ -40,8 +50,10 @@ public class EnemyHealth : MonoBehaviour
 
     private void Die()
     {
-        enemyGenerator.AddDeadEnemy(this); // Adicione este inimigo morto ao EnemyGenerator
-        
+        if (!isBoss)
+        {
+            enemyGenerator.AddDeadEnemy(this); // Adicione este inimigo morto ao EnemyGenerator (não para o boss)
+        }
         // Realiza ações de morte do inimigo, como tocar uma animação, gerar partículas, etc.
         Destroy(gameObject); // Destroi o objeto do inimigo
     }

@@ -541,7 +541,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 0
-  maxHealth: 300
+  maxHealth: 100
+  isBoss: 1
 --- !u!1 &278933291
 GameObject:
   m_ObjectHideFlags: 0
@@ -1808,6 +1809,7 @@ MonoBehaviour:
   enemiesPerLevel: 6
   enemyHealth: 1
   enemyDamage: 1
+  bossHealth: 100
   lastEnemyIsABoss: 0
 --- !u!4 &863799803
 Transform:
