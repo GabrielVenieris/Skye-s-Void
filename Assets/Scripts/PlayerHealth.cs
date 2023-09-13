@@ -35,7 +35,20 @@ public class PlayerHealth : MonoBehaviour
             healthBar.SetHealth(health);
             if (health <= 0)
             {
-                GameManager.BackToMenu();
+                // Verifique a cena atual
+                string currentScene = SceneManager.GetActiveScene().name;
+
+                // Use uma instrução switch para decidir para qual cena ir com base na cena atual
+                switch (currentScene)
+                {
+                    case "Void":
+                        SceneManager.LoadScene(0); // Carregue a cena de índice 0 (provavelmente seu menu principal)
+                        break;
+                    default:
+                        SceneManager.LoadScene("Void"); // Carregue a cena chamada "Void"
+                        break;
+                }
+                // GameManager.BackToMenu();
                 TimeCounter.sceneStarted = false;
             }
         }
