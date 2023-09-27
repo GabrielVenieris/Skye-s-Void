@@ -10,15 +10,44 @@ BackToMenu() = Volta pra tela de inicio
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
     public GameState State;
     public static event Action<GameState> OnGameStateChanged;
+    // public GameObject gameMusic;
+
 
 
     void Awake() 
     {
-        Instance = this;
+        if (instance == null)
+            instance = this;
+        else{
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+        // gameMusic = GameObject.Find("GameMusic"); // Encontre o objeto GameMusic
+
     }
+
+    // void Start()
+    // {
+    //     // Verifique se a cena atual não é a "StartMenuScene"
+    //     if (SceneManager.GetActiveScene().name != "StartMenuScene")
+    //     {
+    //         // Verifique se o objeto GameMusic existe
+    //         if (gameMusic != null)
+    //         {
+    //             // Reproduza a música no objeto GameMusic
+    //             AudioSource audioSource = gameMusic.GetComponent<AudioSource>();
+    //             if (audioSource != null)
+    //             {
+    //                 audioSource.Play();
+    //             }
+    //         }
+    //     }
+    // }
 
 
     public void UpdateGameStates(GameState newState)

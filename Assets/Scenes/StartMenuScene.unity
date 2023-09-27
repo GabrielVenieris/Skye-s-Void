@@ -290,6 +290,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   State: 0
+  gameMusic: {fileID: 0}
 --- !u!4 &307745840
 Transform:
   m_ObjectHideFlags: 0

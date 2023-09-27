@@ -70,7 +70,7 @@ public class LevelManager : MonoBehaviour
         if (playerKillsList.Count == enemiesPerLevel)
         {
             SetupLevelChanged();
-            GameManager.Instance.LoadNextLevel();
+            GameManager.instance.LoadNextLevel();
             return; // Nível completo
         }
     }
