@@ -3,6 +3,12 @@ using UnityEngine;
 using System;
 using Unity.VisualScripting;
 
+/*
+Singleton
+Define a organização do áudio do jogo: Ainda incompleto(em funcionamento)
+func Play = Basta chamar onde quiser e passar o nome do áudio como parametro(nome que é dado ao colocar ele dentro do script "Sound"), pelo inspector.
+*/
+
 public class AudioManager : MonoBehaviour
 {
 

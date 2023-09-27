@@ -2,6 +2,12 @@ using UnityEngine.Audio;
 using UnityEngine;
 using JetBrains.Annotations;
 
+/*
+Lista de áudios e principais mecanismos de configuração
+Nome (name); Volume(volume); Tom(pitch); Loop(loop)
+*/
+
+
 [System.Serializable]
 public class Sound
 {
