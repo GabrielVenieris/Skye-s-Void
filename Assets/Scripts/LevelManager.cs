@@ -109,8 +109,20 @@ public class LevelManager : MonoBehaviour
         // Verifique se a quantidade de inimigos mortos é igual à quantidade de inimigos a serem spawnados
         if (playerKillsList.Count == enemiesPerLevel)
         {
-            SetupLevelChanged();
-            GameManager.instance.LoadNextLevel();
+           int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+            // Verifique se a próxima cena existe
+            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                // Há uma próxima cena, então vá para ela usando o GameManager
+                GameManager.instance.LoadNextLevel();
+            }
+            else
+            {
+                // Não há próxima cena, ou seja, você está na última fase
+                Debug.Log("Você está na última fase!");
+            }
+            
             return; // Nível completo
         }
     }
@@ -125,9 +137,9 @@ public class LevelManager : MonoBehaviour
 
 void SetupLevel(int level) {
         kills = 0;
-        enemiesPerLevel = 1 * (1+ ((level-1)/10));
-        enemyHealth     = 1 * (1 + ((level-1)/10));
-        enemyDamage     = 1 * (1+ ((level-1)/10));
+        enemiesPerLevel = Mathf.FloorToInt(1 * (1 + ((level - 1) / 10)));
+        enemyHealth = Mathf.FloorToInt(1 * (1 + ((level - 1) / 10)));
+        enemyDamage = Mathf.FloorToInt(1 * (1 + ((level - 1) / 10)));
         lastEnemyIsABoss = (level == 3);
 }
 
