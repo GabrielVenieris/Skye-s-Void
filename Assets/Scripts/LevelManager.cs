@@ -14,10 +14,10 @@ public class LevelManager : MonoBehaviour
 
     private GameLevel previousLevel; // Variável para armazenar o nível anterior
 
-    public int enemiesPerLevel = 30;
-    public int enemyHealth = 1;
-    public int enemyDamage = 1;
-    public int bossHealth = 1000;
+    public int enemiesPerLevel;
+    public int enemyHealth;
+    public int enemyDamage;
+    public int bossHealth;
 
     public bool lastEnemyIsABoss = false;
 
@@ -116,6 +116,8 @@ public class LevelManager : MonoBehaviour
             {
                 // Há uma próxima cena, então vá para ela usando o GameManager
                 GameManager.instance.LoadNextLevel();
+                 // A cena mudou, chame SetupLevelChanged
+                SetupLevelChanged();
             }
             else
             {
@@ -137,9 +139,9 @@ public class LevelManager : MonoBehaviour
 
 void SetupLevel(int level) {
         kills = 0;
-        enemiesPerLevel = Mathf.FloorToInt(1 * (1 + ((level - 1) / 10)));
-        enemyHealth = Mathf.FloorToInt(1 * (1 + ((level - 1) / 10)));
-        enemyDamage = Mathf.FloorToInt(1 * (1 + ((level - 1) / 10)));
+        enemiesPerLevel = Mathf.FloorToInt(1 * (50 + ((level - 1) / 10)));
+        enemyHealth = Mathf.FloorToInt(level + 15);
+        enemyDamage = Mathf.FloorToInt(1 * (10 + ((level - 1) / 10)));
         lastEnemyIsABoss = (level == 3);
 }
 
