@@ -31,7 +31,7 @@ public class EnemyHealth : MonoBehaviour
         }
         else
         {
-            maxHealth = levelManager.enemyHealth; // Use a vida padrão
+            health = levelManager.enemyHealth; // Use a vida padrão
         }
     }
 
