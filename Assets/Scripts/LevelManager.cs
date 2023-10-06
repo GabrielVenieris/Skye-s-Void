@@ -98,6 +98,8 @@ public class LevelManager : MonoBehaviour
      void CheckLevelCompleted()
 {
     GameLevel current = currentLevel; // Armazene o nível atual antes da verificação
+    //Verifica quem é a próxima cena
+    int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
     EnemyGenerator enemyGenerator = FindObjectOfType<EnemyGenerator>();
     if (enemyGenerator != null)
@@ -106,43 +108,40 @@ public class LevelManager : MonoBehaviour
         // // Obtenha a quantidade de inimigos para o nível atual
         // int enemiesToSpawn = enemiesPerLevel; 
  
-        // Verifique se a quantidade de inimigos mortos é igual à quantidade de inimigos a serem spawnados
-        if (playerKillsList.Count == enemiesPerLevel)
+        
+        // Verifique se a próxima cena existe
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-           int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-            // Verifique se a próxima cena existe
-            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            // Verifique se a quantidade de inimigos mortos é igual à quantidade de inimigos a serem spawnados
+            if (playerKillsList.Count == enemiesPerLevel)
             {
                 // Há uma próxima cena, então vá para ela usando o GameManager
                 GameManager.instance.LoadNextLevel();
                  // A cena mudou, chame SetupLevelChanged
                 SetupLevelChanged();
             }
-            else
+            
+            return; // Nível completo
+            
+        } else if(nextSceneIndex == SceneManager.sceneCountInBuildSettings)
             {
                 // Não há próxima cena, ou seja, você está na última fase
                 Debug.Log("Você está na última fase!");
+                enemiesPerLevel = 10000;
+                 
             }
-            
-            return; // Nível completo
-        }
     }
-    if (current != currentLevel)
-    {
-        // A cena mudou, chame SetupLevelChanged
-        SetupLevelChanged();
-    }
-    return; // Nível não completo
 }
 
 
 void SetupLevel(int level) {
-        kills = 0;
-        enemiesPerLevel = Mathf.FloorToInt(1 * (50 + ((level - 1) / 10)));
-        enemyHealth = Mathf.FloorToInt(level + 15);
-        enemyDamage = Mathf.FloorToInt(1 * (10 + ((level - 1) / 10)));
-        lastEnemyIsABoss = (level == 3);
+
+                kills = 0;
+                enemiesPerLevel = Mathf.FloorToInt(level * 10);
+                enemyHealth = Mathf.FloorToInt(level * 10);
+                enemyDamage = Mathf.FloorToInt(1 * (10 + ((level - 1) / 10)));
+                lastEnemyIsABoss = (level == 3);
+
 }
 
 

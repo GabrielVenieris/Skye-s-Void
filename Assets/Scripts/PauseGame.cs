@@ -10,6 +10,7 @@ public class PausarJogo : MonoBehaviour
 {
     public bool jogoPausado;
     public GameObject PauseUI;
+    public GameObject BlackBackground;
     public GameObject Joystick;
     public GameManager GameManager;
 
@@ -32,6 +33,7 @@ public class PausarJogo : MonoBehaviour
     public void AtualizarVisibilidadePauseUI()
     {
         PauseUI.SetActive(jogoPausado);
+        BlackBackground.SetActive(jogoPausado);
     }
 
     public void AtualizarVisibilidadeJoystick()

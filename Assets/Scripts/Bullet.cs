@@ -82,6 +82,7 @@ public class Bullet : MonoBehaviour
             if(enemyHealth.health == 0 )
             {
                 GameManager.instance.LoadNextLevel();
+                FindAnyObjectByType<LevelManager>().SetupLevelChanged();
             }
             Instantiate(impactEffect, transform.position, transform.rotation);
             Destroy(gameObject);
