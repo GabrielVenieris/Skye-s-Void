@@ -16,6 +16,8 @@ public class PlayerShooter : MonoBehaviour
     private float timeSinceLastShot = 0f;
     private SpriteRenderer sprite;
     private Animator anim;
+    public LayerMask enemyLayer; // A camada dos inimigos
+
 
 
 
@@ -47,6 +49,8 @@ public void Shoot(Vector2 shootingDirection)
 {
     // Cria um tiro a partir do prefab e define sua posição no ponto de disparo e rotação
     GameObject bullet = Instantiate(bulletPrefab, firePoint.position, Quaternion.identity);
+
+    // anim.SetTrigger()
 
     // Obtém o componente Rigidbody2D do tiro e aplica a velocidade para a direção calculada
     Rigidbody2D bulletRb = bullet.GetComponent<Rigidbody2D>();
