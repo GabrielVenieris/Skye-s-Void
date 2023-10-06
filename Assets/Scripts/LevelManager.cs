@@ -1,11 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-
+    public static LevelManager instance;
     public GameLevel currentLevel;
+    public int kills = 0;
+
+
+
+
+    private GameLevel previousLevel; // Variável para armazenar o nível anterior
+
+    public int enemiesPerLevel;
+    public int enemyHealth;
+    public int enemyDamage;
+    public int bossHealth;
+
+    public bool lastEnemyIsABoss = false;
+
+
+     void Awake()
+    {
+        if (instance == null)
+            instance = this;
+        else{
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -16,28 +44,106 @@ public class LevelManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        CheckLevelCompleted();
     }
 
 
-    public int GetEnemiesForCurrentLevel()
+    public void SetupLevelChanged()
     {
-        switch (currentLevel)
+         string sceneName = SceneManager.GetActiveScene().name;
+
+    switch (sceneName)
+    {
+        case "Mapa 1":
+            currentLevel = GameLevel.Level1;
+            SetupLevel(2);
+            break;
+
+        case "Mapa 2":
+            currentLevel = GameLevel.Level2;
+            SetupLevel(3);
+            break;
+
+        case "Mapa 3":
+            currentLevel = GameLevel.Level3;
+            SetupLevel(4);
+            break;
+
+        default:
+            currentLevel = GameLevel.Level1; // Cena padrão
+            SetupLevel(1);
+            break;
+    }
+        // switch (currentLevel)
+        // {
+        //     case GameLevel.Level1:
+        //     SetupLevel(2);
+        //         break; // Define a quantidade de inimigos para o Level 1
+
+        //     case GameLevel.Level2:
+        //     SetupLevel(3);
+        //         break; // Define a quantidade de inimigos para o Level 2
+
+        //     case GameLevel.Level3:
+        //     SetupLevel(4);
+        //         break; // Define a quantidade de inimigos para o Level 3
+
+        //     // Adicione outros casos para outros níveis
+        //     default:
+        //         break; // Se o nível não for reconhecido, retorne 0 inimigos
+        // }
+    }
+
+
+     void CheckLevelCompleted()
+{
+    GameLevel current = currentLevel; // Armazene o nível atual antes da verificação
+
+    EnemyGenerator enemyGenerator = FindObjectOfType<EnemyGenerator>();
+    if (enemyGenerator != null)
+    {
+        List<EnemyHealth> playerKillsList = enemyGenerator.GetEnemiesKilledList();
+        // // Obtenha a quantidade de inimigos para o nível atual
+        // int enemiesToSpawn = enemiesPerLevel; 
+ 
+        // Verifique se a quantidade de inimigos mortos é igual à quantidade de inimigos a serem spawnados
+        if (playerKillsList.Count == enemiesPerLevel)
         {
-            case GameLevel.Level1:
-                return 20; // Define a quantidade de inimigos para o Level 1
-            case GameLevel.Level2:
-                return 35; // Define a quantidade de inimigos para o Level 2
-            case GameLevel.Level3:
-                return 50; // Define a quantidade de inimigos para o Level 3
-            // Adicione outros casos para outros níveis
-            default:
-                return 0; // Se o nível não for reconhecido, retorne 0 inimigos
+           int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
+
+            // Verifique se a próxima cena existe
+            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            {
+                // Há uma próxima cena, então vá para ela usando o GameManager
+                GameManager.instance.LoadNextLevel();
+                 // A cena mudou, chame SetupLevelChanged
+                SetupLevelChanged();
+            }
+            else
+            {
+                // Não há próxima cena, ou seja, você está na última fase
+                Debug.Log("Você está na última fase!");
+            }
+            
+            return; // Nível completo
         }
     }
+    if (current != currentLevel)
+    {
+        // A cena mudou, chame SetupLevelChanged
+        SetupLevelChanged();
+    }
+    return; // Nível não completo
+}
 
 
-
+void SetupLevel(int level) {
+        kills = 0;
+        enemiesPerLevel = Mathf.FloorToInt(1 * (50 + ((level - 1) / 10)));
+        enemyHealth = Mathf.FloorToInt(level + 15);
+        enemyDamage = Mathf.FloorToInt(1 * (10 + ((level - 1) / 10)));
+        lastEnemyIsABoss = (level == 3);
+}
 
 
 }

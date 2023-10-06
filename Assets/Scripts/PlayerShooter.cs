@@ -68,7 +68,7 @@ public void ShootSeek(Transform enemy)
 }
 
 public void BulletSeek(){
-    RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 3f, -Vector2.up, 3f, LayerMask.GetMask("Enemy"));
+    RaycastHit2D[] hit = Physics2D.CircleCastAll(transform.position, 3f, -Vector2.up, 3f, LayerMask.GetMask("Enemy","Boss"));
     if(hit.Length > 0){
 
         // // atira em todo mundo 

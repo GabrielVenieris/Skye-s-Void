@@ -1,5 +1,4 @@
 using System;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -11,14 +10,24 @@ BackToMenu() = Volta pra tela de inicio
 
 public class GameManager : MonoBehaviour
 {
-    public static GameManager Instance;
+    public static GameManager instance;
     public GameState State;
     public static event Action<GameState> OnGameStateChanged;
 
 
+
     void Awake() 
     {
-        Instance = this;
+        if (instance == null)
+            instance = this;
+        else{
+            Destroy(gameObject);
+            return;
+        }
+
+        DontDestroyOnLoad(gameObject);
+        
+
     }
 
 
@@ -54,7 +63,10 @@ public class GameManager : MonoBehaviour
     }
 
     
-
+public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
     
 
