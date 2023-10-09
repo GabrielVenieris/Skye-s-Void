@@ -11,9 +11,6 @@ public class LevelManager : MonoBehaviour
 
 
 
-
-    private GameLevel previousLevel; // Variável para armazenar o nível anterior
-
     public int enemiesPerLevel;
     public int enemyHealth;
     public int enemyDamage;
@@ -74,24 +71,6 @@ public class LevelManager : MonoBehaviour
             SetupLevel(1);
             break;
     }
-        // switch (currentLevel)
-        // {
-        //     case GameLevel.Level1:
-        //     SetupLevel(2);
-        //         break; // Define a quantidade de inimigos para o Level 1
-
-        //     case GameLevel.Level2:
-        //     SetupLevel(3);
-        //         break; // Define a quantidade de inimigos para o Level 2
-
-        //     case GameLevel.Level3:
-        //     SetupLevel(4);
-        //         break; // Define a quantidade de inimigos para o Level 3
-
-        //     // Adicione outros casos para outros níveis
-        //     default:
-        //         break; // Se o nível não for reconhecido, retorne 0 inimigos
-        // }
     }
 
 
@@ -104,9 +83,7 @@ public class LevelManager : MonoBehaviour
     EnemyGenerator enemyGenerator = FindObjectOfType<EnemyGenerator>();
     if (enemyGenerator != null)
     {
-        List<EnemyHealth> playerKillsList = enemyGenerator.GetEnemiesKilledList();
-        // // Obtenha a quantidade de inimigos para o nível atual
-        // int enemiesToSpawn = enemiesPerLevel; 
+        List<EnemyHealth> playerKillsList = enemyGenerator.GetEnemiesKilledList(); 
  
         
         // Verifique se a próxima cena existe
