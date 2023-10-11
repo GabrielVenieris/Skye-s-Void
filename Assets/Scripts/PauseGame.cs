@@ -44,7 +44,7 @@ public class PausarJogo : MonoBehaviour
 
     public void BackToMenu()
     {
-        GameManager.BackToMenu();
+        FindAnyObjectByType<GameManager>().BackToMenu();
     }
 
 
