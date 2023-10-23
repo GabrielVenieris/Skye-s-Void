@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -6,6 +7,7 @@ using UnityEngine.SceneManagement;
 Singleton
 Define a organização do jogo: Ainda incompleto(fora de funcionamento)
 BackToMenu() = Volta pra tela de inicio
+Define animacao de troca de tela(fade_in/out)
 */
 
 public class GameManager : MonoBehaviour
@@ -13,6 +15,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameState State;
     public static event Action<GameState> OnGameStateChanged;
+    public Animator transition;
+    public float transitionTime = 1f;
 
 
 
@@ -59,16 +63,27 @@ public class GameManager : MonoBehaviour
 
     public void BackToMenu()
     {
-        SceneManager.LoadScene(0);
+        // SceneManager.LoadScene(0);
+        //Menu = LevelIndex 0
+        StartCoroutine(LoadNextLevelFade(1));
+       
     }
 
     
-public void LoadNextLevel()
+    public void LoadNextLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadNextLevelFade(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
-    
+    IEnumerator LoadNextLevelFade(int levelIndex)
+    {
+        transition.SetTrigger("StartFade");
+        yield return new WaitForSeconds(transitionTime);
+        SceneManager.LoadScene(levelIndex);
+        // transition.SetTrigger("StartFade");
+        transition.ResetTrigger("StartFade");
+    }
 
 
 }

@@ -42,7 +42,7 @@ public class PlayerHealth : MonoBehaviour
                 switch (currentScene)
                 {
                     case "Void":
-                        SceneManager.LoadScene(0); // Carregue a cena de índice 0 (provavelmente seu menu principal)
+                        SceneManager.LoadScene(0); // Menu = LevelIndex 0
                         break;
                     default:
                         SceneManager.LoadScene("Void"); // Carregue a cena chamada "Void"

@@ -12,7 +12,7 @@ public class PausarJogo : MonoBehaviour
     public GameObject PauseUI;
     public GameObject BlackBackground;
     public GameObject Joystick;
-    public GameManager GameManager;
+
 
     void Start()
     {
@@ -45,6 +45,7 @@ public class PausarJogo : MonoBehaviour
     public void BackToMenu()
     {
         FindAnyObjectByType<GameManager>().BackToMenu();
+        Time.timeScale = 1f;
     }
 
 

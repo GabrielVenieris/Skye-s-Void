@@ -6,6 +6,7 @@ using UnityEngine;
 
 /*
 Define as especificações da bala: Colisão, animação, tempo de vida, dano, espelhamento de animação. Com inimigos normais e com bosses.
+Quando mata um boss(no void) volta pra primeira fase
 */
 
 public class Bullet : MonoBehaviour
