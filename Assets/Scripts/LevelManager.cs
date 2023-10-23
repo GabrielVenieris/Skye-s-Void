@@ -138,13 +138,6 @@ public class LevelManager : MonoBehaviour
 
 
 void SetupLevel(int level) {
-<<<<<<< Updated upstream
-        kills = 0;
-        enemiesPerLevel = Mathf.FloorToInt(1 * (50 + ((level - 1) / 10)));
-        enemyHealth = Mathf.FloorToInt(level + 15);
-        enemyDamage = Mathf.FloorToInt(1 * (10 + ((level - 1) / 10)));
-        lastEnemyIsABoss = (level == 3);
-=======
 
                 kills = 0;
                 enemiesPerLevel = Mathf.FloorToInt(level * 2);
@@ -152,7 +145,6 @@ void SetupLevel(int level) {
                 enemyDamage = Mathf.FloorToInt(1 * (10 + ((level - 1) / 10)));
                 lastEnemyIsABoss = (level == 3);
 
->>>>>>> Stashed changes
 }
 
 
