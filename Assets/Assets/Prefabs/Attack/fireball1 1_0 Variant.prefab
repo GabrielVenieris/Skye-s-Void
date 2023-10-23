@@ -10,11 +10,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 627856427998044473, guid: a28e2a43c8d694925b847c491edd720e, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 627856427998044473, guid: a28e2a43c8d694925b847c491edd720e, type: 3}
       propertyPath: m_SortingLayerID
-      value: 91121005
+      value: 628610967
       objectReference: {fileID: 0}
     - target: {fileID: 4856724881191425740, guid: a28e2a43c8d694925b847c491edd720e, type: 3}
       propertyPath: m_IsTrigger
@@ -109,7 +109,7 @@ Animator:
   m_GameObject: {fileID: 8970578692097310394}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 07f34c8d4c3d145a19180a9c8fe66cba, type: 2}
+  m_Controller: {fileID: 9100000, guid: 6ab9e1aa2633c4977bf3964ce0ef07ec, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 2
   m_ApplyRootMotion: 0
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 10
   lifeTime: 2
-  impactEffect: {fileID: 141382504953449037, guid: 08dd0f79c18314512a13a006a9ae6330, type: 3}
+  impactEffect: {fileID: 7252580470733844558, guid: 3fad100144c4241a79c973d728a22979, type: 3}
   Seeking: 0
   seekingPos: {x: 0, y: 0, z: 0}
 --- !u!114 &-4012682527545659615

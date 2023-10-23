@@ -2,6 +2,7 @@ using UnityEngine.Audio;
 using UnityEngine;
 using System;
 using Unity.VisualScripting;
+using UnityEngine.SceneManagement;
 
 /*
 Singleton
@@ -39,10 +40,21 @@ public class AudioManager : MonoBehaviour
 
     void Start ()
     {
-        Play("GameMusic");
+        if (SceneManager.GetActiveScene().name != "StartMenuScene"){
+            PlayMusic("GameMusic");
+        }
+        
     }
 
-    public void Play (String name)
+
+    void Update ()
+    {
+        if (SceneManager.GetActiveScene().name == "StartMenuScene"){
+            PauseMusic("GameMusic");
+        }
+    }
+
+    public void PlayMusic (String name)
     {
         Sound S = Array.Find(sounds, sound => sound.name == name);
         if (S == null)
@@ -51,6 +63,17 @@ public class AudioManager : MonoBehaviour
             return;
         }
         S.source.Play();
+    }
+
+    public void PauseMusic (String name)
+    {
+        Sound S = Array.Find(sounds, sound => sound.name == name);
+        if (S == null)
+        {
+            Debug.LogWarning("Sound: " + name + "not found");
+            return;
+        }
+        S.source.Stop();
     }
 
 
