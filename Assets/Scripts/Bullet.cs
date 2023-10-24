@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour
     private SpriteRenderer sprite;
     private Animator anim;
     private bool hasFlipped = false;
-    private bool isShootR = false;
+    private bool isBulletR = false;
     public int damage = 10;
     public float lifeTime = 2.0f; // Tempo de vida do tiro em segundos
     public GameObject impactEffect;
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
 
     public void SetIsShootingRight(bool value)
     {
-        isShootR = value;
+        isBulletR = value;
     }
 
     private void Update()
@@ -46,12 +46,12 @@ public class Bullet : MonoBehaviour
     private void UpdateAnimation()
     {
         bool isRunning = Mathf.Abs(rb.velocity.x) > 0.1f || Mathf.Abs(rb.velocity.y) > 0.1f;
-        anim.SetBool("ShootR", isShootR);
+        anim.SetBool("BulletR", isBulletR);
 
         if (rb.velocity.x < 0f && !hasFlipped)
         {
             sprite.transform.Rotate(0f, 180f, 0f);
-            hasFlipped = true;
+            hasFlipped = false;
         }
         else if (rb.velocity.x > 0f && hasFlipped)
         {
