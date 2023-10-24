@@ -40,16 +40,15 @@ public class AudioManager : MonoBehaviour
 
     void Start ()
     {
-        if (SceneManager.GetActiveScene().name != "StartMenuScene"){
+        if (SceneManager.GetActiveScene().name != "StartMenuScene" ){
             PlayMusic("GameMusic");
         }
         
     }
 
-
-    void Update ()
+    void Update()
     {
-        if (SceneManager.GetActiveScene().name == "StartMenuScene"){
+        if (SceneManager.GetActiveScene().name == "StartMenuScene" ){
             PauseMusic("GameMusic");
         }
     }
@@ -75,6 +74,7 @@ public class AudioManager : MonoBehaviour
         }
         S.source.Stop();
     }
+
 
 
 }

@@ -6,6 +6,7 @@ using UnityEngine;
 
 /*
 Define as especificações da bala: Colisão, animação, tempo de vida, dano, espelhamento de animação. Com inimigos normais e com bosses.
+Quando mata um boss(no void) volta pra primeira fase
 */
 
 public class Bullet : MonoBehaviour
@@ -52,11 +53,11 @@ public class Bullet : MonoBehaviour
             sprite.transform.Rotate(0f, 180f, 0f);
             hasFlipped = false;
         }
-        // else if (rb.velocity.x > 0f && hasFlipped)
-        // {
-        //     sprite.transform.Rotate(0f, 180f, 0f);
-        //     hasFlipped = false;
-        // }
+        else if (rb.velocity.x > 0f && hasFlipped)
+        {
+            sprite.transform.Rotate(0f, 180f, 0f);
+            hasFlipped = false;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -82,6 +83,7 @@ public class Bullet : MonoBehaviour
             if(enemyHealth.health == 0 )
             {
                 GameManager.instance.LoadNextLevel();
+                FindAnyObjectByType<LevelManager>().SetupLevelChanged();
             }
             Instantiate(impactEffect, transform.position, transform.rotation);
             Destroy(gameObject);

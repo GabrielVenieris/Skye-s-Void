@@ -11,9 +11,6 @@ public class LevelManager : MonoBehaviour
 
 
 
-
-    private GameLevel previousLevel; // Variável para armazenar o nível anterior
-
     public int enemiesPerLevel;
     public int enemyHealth;
     public int enemyDamage;
@@ -74,73 +71,50 @@ public class LevelManager : MonoBehaviour
             SetupLevel(1);
             break;
     }
-        // switch (currentLevel)
-        // {
-        //     case GameLevel.Level1:
-        //     SetupLevel(2);
-        //         break; // Define a quantidade de inimigos para o Level 1
-
-        //     case GameLevel.Level2:
-        //     SetupLevel(3);
-        //         break; // Define a quantidade de inimigos para o Level 2
-
-        //     case GameLevel.Level3:
-        //     SetupLevel(4);
-        //         break; // Define a quantidade de inimigos para o Level 3
-
-        //     // Adicione outros casos para outros níveis
-        //     default:
-        //         break; // Se o nível não for reconhecido, retorne 0 inimigos
-        // }
     }
 
 
      void CheckLevelCompleted()
 {
     GameLevel current = currentLevel; // Armazene o nível atual antes da verificação
+    //Verifica quem é a próxima cena
+    int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
 
     EnemyGenerator enemyGenerator = FindObjectOfType<EnemyGenerator>();
     if (enemyGenerator != null)
     {
-        List<EnemyHealth> playerKillsList = enemyGenerator.GetEnemiesKilledList();
-        // // Obtenha a quantidade de inimigos para o nível atual
-        // int enemiesToSpawn = enemiesPerLevel; 
+        List<EnemyHealth> playerKillsList = enemyGenerator.GetEnemiesKilledList(); 
  
-        // Verifique se a quantidade de inimigos mortos é igual à quantidade de inimigos a serem spawnados
-        if (playerKillsList.Count == enemiesPerLevel)
+        
+        // Verifique se a próxima cena existe
+        if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
         {
-           int nextSceneIndex = SceneManager.GetActiveScene().buildIndex + 1;
-
-            // Verifique se a próxima cena existe
-            if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+            // Verifique se a quantidade de inimigos mortos é igual à quantidade de inimigos a serem spawnados
+            if (playerKillsList.Count == enemiesPerLevel)
             {
                 // Há uma próxima cena, então vá para ela usando o GameManager
                 GameManager.instance.LoadNextLevel();
                  // A cena mudou, chame SetupLevelChanged
                 SetupLevelChanged();
             }
-            else
+            
+            return; // Nível completo
+            
+        } else if(nextSceneIndex == SceneManager.sceneCountInBuildSettings)
             {
                 // Não há próxima cena, ou seja, você está na última fase
                 Debug.Log("Você está na última fase!");
+                enemiesPerLevel = 10000;
+                 
             }
-            
-            return; // Nível completo
-        }
     }
-    if (current != currentLevel)
-    {
-        // A cena mudou, chame SetupLevelChanged
-        SetupLevelChanged();
-    }
-    return; // Nível não completo
 }
 
 
 void SetupLevel(int level) {
 
                 kills = 0;
-                enemiesPerLevel = Mathf.FloorToInt(level * 2);
+                enemiesPerLevel = Mathf.FloorToInt(level * 10);
                 enemyHealth = Mathf.FloorToInt(level * 10);
                 enemyDamage = Mathf.FloorToInt(1 * (10 + ((level - 1) / 10)));
                 lastEnemyIsABoss = (level == 3);

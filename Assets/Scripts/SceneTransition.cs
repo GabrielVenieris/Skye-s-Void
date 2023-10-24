@@ -1,6 +1,7 @@
 // using System.Collections;
 // using System.Collections.Generic;
 // using UnityEngine;
+// using UnityEngine.SceneManagement;
 
 // /*
 // Define a animação(fade-in e fade-out) 
@@ -9,16 +10,30 @@
 
 // public class SceneTransition : MonoBehaviour
 // {
-//     public int AnimationTime;
-//     public Animator transition;
+//     private float fadeInterval = 1f;
+//     private Animator sceneFaderAnimator;
 
-//     IEnumerator LevelTransition()
+//     private void Start()
 //     {
-//         transition.SetTrigger("StartTransition");
-//         yield return new WaitForSeconds(AnimationTime);
-
+//         // sceneFaderAnimator = GetComponent<Animator>();
 //     }
 
+//     public void FadeToScene(string sceneName)
+//     {
+//         StartCoroutine(Transition(sceneName));
+//     }
+
+//     public IEnumerator Transition(string sceneName)
+//     {
+//         sceneFaderAnimator = GetComponent<Animator>();
+//         sceneFaderAnimator.SetTrigger("FadeTrigger"); 
+//         Debug.Log("Aconteceu o fade");
+
+//         yield return new WaitForSeconds(fadeInterval);
+
+//         SceneManager.LoadScene(sceneName);
+//     }
 // }
+
 
     
