@@ -1,0 +1,25 @@
+fileFormatVersion: 2
+guid: b42b5628a6a6742b3ae6006b224cc9f6
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - TT Firs Neue Trl
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 615a67354d1b940d68801f9ec1bde724, type: 3}
+  - {fileID: 12800000, guid: 62f6ead1242374494a4831c9447aea92, type: 3}
+  - {fileID: 12800000, guid: 00cadf6851f1a443e82a7891f02f9dde, type: 3}
+  - {fileID: 12800000, guid: b2693a7faa8de45ff86aca8d8c044ec1, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

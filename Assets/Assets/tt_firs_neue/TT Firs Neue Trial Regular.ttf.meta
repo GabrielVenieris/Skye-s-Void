@@ -1,0 +1,31 @@
+fileFormatVersion: 2
+guid: 9bed825a7c2ed4cc7823ee647af46136
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - TT Firs Neue Trl
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 398633e76242a49d4a7905cc0c6d778a, type: 3}
+  - {fileID: 12800000, guid: 49f073ba7173d44489daddc5e273da6d, type: 3}
+  - {fileID: 12800000, guid: 615a67354d1b940d68801f9ec1bde724, type: 3}
+  - {fileID: 12800000, guid: f4b29f7776d3c4f5b9300d15a8555ee0, type: 3}
+  - {fileID: 12800000, guid: 62f6ead1242374494a4831c9447aea92, type: 3}
+  - {fileID: 12800000, guid: 2b1063ae40aef4b5f9f4e374ede8ce4f, type: 3}
+  - {fileID: 12800000, guid: b42b5628a6a6742b3ae6006b224cc9f6, type: 3}
+  - {fileID: 12800000, guid: 00cadf6851f1a443e82a7891f02f9dde, type: 3}
+  - {fileID: 12800000, guid: 8746d7ac484c24c9abe2c9efabeebbda, type: 3}
+  - {fileID: 12800000, guid: b2693a7faa8de45ff86aca8d8c044ec1, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
