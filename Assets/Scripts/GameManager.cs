@@ -76,6 +76,11 @@ public class GameManager : MonoBehaviour
         StartCoroutine(LoadNextLevelFade(SceneManager.GetActiveScene().buildIndex + 1));
     }
 
+     public void LoadNext2Level()
+    {
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadNextLevelFade(SceneManager.GetActiveScene().buildIndex + 2));
+    }
     IEnumerator LoadNextLevelFade(int levelIndex)
     {
         transition.SetTrigger("StartFade");

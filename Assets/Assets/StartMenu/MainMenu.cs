@@ -16,7 +16,7 @@ public class MainMenu : MonoBehaviour
     {
         //FIXME: Não ta chamando GameManager: Compromete o fadeIn/Out;
         // SceneManager.LoadScene(2);
-        FindAnyObjectByType<GameManager>().LoadNextLevel();
+        FindAnyObjectByType<GameManager>().LoadNext2Level();
         TimeCounter.sceneStarted = true;
     }
 
