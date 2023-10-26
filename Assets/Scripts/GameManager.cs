@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
     {
         // SceneManager.LoadScene(0);
         //Menu = LevelIndex 0
-        StartCoroutine(LoadNextLevelFade(1));
+        StartCoroutine(LoadNextLevelFade(0));
        
     }
 
