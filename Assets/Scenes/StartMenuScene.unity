@@ -539,6 +539,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 2228808936481638069, guid: 96ddabd4e597d4fbdadd7318fcfaeb80, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375937919980479762, guid: 96ddabd4e597d4fbdadd7318fcfaeb80, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375937919980479762, guid: 96ddabd4e597d4fbdadd7318fcfaeb80, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4375937919980479762, guid: 96ddabd4e597d4fbdadd7318fcfaeb80, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5002892070992151424, guid: 96ddabd4e597d4fbdadd7318fcfaeb80, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
