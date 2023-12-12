@@ -45,17 +45,17 @@ public class Bullet : MonoBehaviour
 
     private void UpdateAnimation()
     {
-        bool isRunning = Mathf.Abs(rb.velocity.x) > 0.1f || Mathf.Abs(rb.velocity.y) > 0.1f;
+        // bool isRunning = Mathf.Abs(rb.velocity.x) > 0.1f || Mathf.Abs(rb.velocity.y) > 0.1f;
         anim.SetBool("BulletR", isBulletR);
 
         if (rb.velocity.x < 0f && !hasFlipped)
         {
-            sprite.transform.Rotate(0f, 180f, 0f);
-            hasFlipped = false;
+            sprite.transform.Rotate(180f, 0f, 0f);
+            hasFlipped = true;
         }
         else if (rb.velocity.x > 0f && hasFlipped)
         {
-            sprite.transform.Rotate(0f, 180f, 0f);
+            sprite.transform.Rotate(180f, 0f, 0f);
             hasFlipped = false;
         }
     }
